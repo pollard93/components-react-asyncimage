@@ -1,3 +1,3 @@
-import { Hello } from './components/Hello';
+import AsyncImage from './components/AsyncImage/AsyncImage';
 
-export default Hello;
+export default AsyncImage;

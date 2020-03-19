@@ -1,0 +1,20 @@
+.asyncImage__container {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.asyncImage__image {
+  flex-shrink: 0;
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  transition: 300ms ease-in;
+}
+
+.asyncImage__imageLoaded {
+  opacity: 1;
+}
