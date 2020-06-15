@@ -8,12 +8,22 @@ export interface AsyncImageProps {
   imageAlt: string;
   containerClassName?: string;
   containerStyles?: React.CSSProperties;
+  imageClassName?: string;
+  imageStyles?: React.CSSProperties;
 }
 
 
 const AsyncImage: FC<AsyncImageProps> = (props) => {
   const [loaded, setLoaded] = useState(false);
-  const { splashUrl, fullUrl, imageAlt, containerClassName = '', containerStyles = {} } = props;
+  const {
+    splashUrl,
+    fullUrl,
+    imageAlt,
+    containerClassName = '',
+    containerStyles = {},
+    imageClassName = '',
+    imageStyles = {},
+  } = props;
 
 
   /**
@@ -41,7 +51,8 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
       <img
         src={fullUrl}
         alt={imageAlt}
-        className={`asyncImage__image ${loaded ? 'asyncImage__imageLoaded' : ''}`}
+        className={`asyncImage__image ${loaded ? 'asyncImage__imageLoaded' : ''} ${imageClassName}`}
+        style={imageStyles}
       />
     </div>
   );
