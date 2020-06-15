@@ -11,7 +11,7 @@ export interface AsyncImageProps {
 }
 
 
-const AsyncImage = (props: AsyncImageProps) => {
+const AsyncImage: FC<AsyncImageProps> = (props) => {
   const [loaded, setLoaded] = useState(false);
   const { splashUrl, fullUrl, imageAlt, containerClassName = '', containerStyles = {} } = props;
 
