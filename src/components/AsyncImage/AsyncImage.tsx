@@ -47,7 +47,4 @@ const AsyncImage = (props: AsyncImageProps) => {
   );
 };
 
-// Will only render if the file id changes
-// const AsyncImageMemo = memo(AsyncImage, (prevProps, nextProps) => prevProps.data.id === nextProps.data.id);
-
 export default AsyncImage;
