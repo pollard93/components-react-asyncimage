@@ -43,21 +43,27 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
 
 
   return (
-    <div
-      className={`asyncImage__container ${containerClassName}`}
-      style={{
-        backgroundImage: `url(${splashUrl})`,
-        ...containerStyles,
-      }}
-    >
-      {!fullUrl && fallbackComponent}
-
-      <img
-        src={fullUrl}
-        alt={imageAlt}
-        className={`asyncImage__image ${loaded ? 'asyncImage__imageLoaded' : ''} ${imageClassName}`}
-        style={imageStyles}
-      />
+    <div>
+      {
+        fullUrl
+          ? (
+            <div
+              className={`asyncImage__container ${containerClassName}`}
+              style={{
+                backgroundImage: `url(${splashUrl})`,
+                ...containerStyles,
+              }}
+            >
+              <img
+                src={fullUrl}
+                alt={imageAlt}
+                className={`asyncImage__image ${loaded ? 'asyncImage__imageLoaded' : ''} ${imageClassName}`}
+                style={imageStyles}
+              />
+            </div>
+          )
+          : fallbackComponent
+      }
     </div>
   );
 };
