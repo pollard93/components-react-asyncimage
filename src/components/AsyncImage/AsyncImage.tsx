@@ -10,7 +10,7 @@ export interface AsyncImageProps {
   containerStyles?: React.CSSProperties;
   imageClassName?: string;
   imageStyles?: React.CSSProperties;
-  fallbackComponent?: ReactNode;
+  fallbackComponent?: ReactNode; // Shown if fullUrl is null
 }
 
 
@@ -50,7 +50,7 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
         ...containerStyles,
       }}
     >
-      {fallbackComponent}
+      {!fullUrl && fallbackComponent}
 
       <img
         src={fullUrl}
