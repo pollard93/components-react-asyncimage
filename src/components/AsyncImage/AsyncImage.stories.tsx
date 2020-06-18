@@ -23,4 +23,16 @@ storiesOf('AsyncImage', module)
         height: '500px',
       }}
     />
+  ))
+  .add('AsyncImage - fallbackComponent', () => (
+    <AsyncImage
+      splashUrl="https://broken"
+      fullUrl="https://broken"
+      fallbackComponent={<div style={{ width: '100%', height: '100%' }}>Fallback component</div>}
+      imageAlt="Alt text here"
+      containerStyles={{
+        width: '500px',
+        height: '500px',
+      }}
+    />
   ));

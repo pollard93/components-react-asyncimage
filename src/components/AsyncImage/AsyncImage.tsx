@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from 'react';
+import React, { useEffect, useState, FC, ReactNode } from 'react';
 import './AsyncImage.css';
 
 
@@ -10,6 +10,7 @@ export interface AsyncImageProps {
   containerStyles?: React.CSSProperties;
   imageClassName?: string;
   imageStyles?: React.CSSProperties;
+  fallbackComponent?: ReactNode;
 }
 
 
@@ -23,6 +24,7 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
     containerStyles = {},
     imageClassName = '',
     imageStyles = {},
+    fallbackComponent,
   } = props;
 
 
@@ -48,6 +50,8 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
         ...containerStyles,
       }}
     >
+      {fallbackComponent}
+
       <img
         src={fullUrl}
         alt={imageAlt}
