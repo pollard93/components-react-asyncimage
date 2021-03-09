@@ -1,5 +1,6 @@
 import React, { useEffect, useState, FC, ReactNode } from 'react';
 import './AsyncImage.css';
+import AsyncImageInner from './AsyncImageInner';
 
 
 export interface AsyncImageProps {
@@ -15,31 +16,22 @@ export interface AsyncImageProps {
 
 
 const AsyncImage: FC<AsyncImageProps> = (props) => {
-  const [loaded, setLoaded] = useState(false);
   const {
     splashUrl,
     fullUrl,
-    imageAlt,
     containerClassName = '',
     containerStyles = {},
-    imageClassName = '',
-    imageStyles = {},
     fallbackComponent,
   } = props;
 
 
-  /**
-   * Start loading image on first render
-   */
+  const [urls, setUrls] = useState([]);
   useEffect(() => {
-    const image = new Image();
-
-    image.onload = () => {
-      setLoaded(true);
-    };
-
-    image.src = fullUrl;
-  }, []);
+    if (fullUrl && (urls.length === 0 || urls[urls.length - 1] !== fullUrl)) {
+      const newUrls = [...urls, fullUrl];
+      setUrls(newUrls);
+    }
+  }, [fullUrl]);
 
 
   return (
@@ -54,12 +46,13 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
                 ...containerStyles,
               }}
             >
-              <img
-                src={fullUrl}
-                alt={imageAlt}
-                className={`asyncImage__image ${loaded ? 'asyncImage__imageLoaded' : ''} ${imageClassName}`}
-                style={imageStyles}
-              />
+              {urls.map((u, i) => (
+                <AsyncImageInner
+                  key={`${u}-${i}`}
+                  {...props}
+                  fullUrl={u}
+                />
+              ))}
             </div>
           )
           : fallbackComponent
