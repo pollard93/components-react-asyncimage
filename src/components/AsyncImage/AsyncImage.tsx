@@ -35,7 +35,7 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
 
 
   return (
-    <div>
+    <>
       {
         fullUrl
           ? (
@@ -57,7 +57,7 @@ const AsyncImage: FC<AsyncImageProps> = (props) => {
           )
           : fallbackComponent
       }
-    </div>
+    </>
   );
 };
 
